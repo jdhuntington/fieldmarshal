@@ -106,6 +106,12 @@ class EC2Instances
     true
   end
 
+  def create name
+    instances = ec2.run_instances('ami-bb709dd2', 1, 1, ['db', 'default'], 'skeleton',
+      '', 'public', nil, nil, nil, 'us-east-1c')
+    p instances
+  end
+
   def info
     return @parsed_info if @parsed_info
 
@@ -219,6 +225,9 @@ class EC2Instance < Hash
     super
   end
 
+end
+
+class FieldMarshalCommandException < StandardError
 end
 
 class EC2Command
@@ -384,6 +393,13 @@ class EC2Command
       "Host #{instance.friendly_name}\n  IdentityFile #{instance.key}\n  HostName #{instance.dns_name}\n  User #{instance.username}"
     end
     puts strings.join("\n\n")
+  end
+
+  def create args
+    if args.empty?
+      raise FieldMarshalCommandException.new("Must specify a friendly name")
+    end
+    $all_instances.create(args[0])
   end
 end
 

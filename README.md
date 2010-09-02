@@ -7,12 +7,9 @@ shared naming for instances across a team so they can be accessed
 by a common name.  
 
 ### Installing
-A Bundler Gemfile is inclduded so to make sure you have all the gem
-dependencies, you simply issue:
-  
-  bundle install
 
-You can find bundler here: http://gembundler.com/
+Field Marshal requires that you have the amazon_sdb gem and version
+1.10 of the right_aws gem.
 
 Field Marshal can generate its own configuration file and fire up
 your configured system editor by running:

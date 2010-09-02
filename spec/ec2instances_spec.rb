@@ -1,6 +1,6 @@
 $:.unshift(File.expand_path(File.join(File.dirname(__FILE__), '..')))
 load 'ec2'
-require 'YAML'
+require 'yaml'
 
 describe EC2Instances do
 
